@@ -28,15 +28,18 @@ class StarListStore {
   getStarListDone(payload) {
     this.status = null;
     this.message = null;
-    this.data = payload.map(d => ({
-      id: d.id,
-      name: d.name,
-      display_name: d.name.join(" / "),
-      magnitude: d.magnitude.find(d => d.band == "K").value,
-      distance: Math.sqrt(Math.pow(d.position[0], 2) + Math.pow(d.position[1], 2)),
-      N_orbit: d.orbit.length,
-      N_proper_motion: d.proper_motion.length
-    }));
+    this.data = payload.map(d => {
+      var magnitude = d.magnitude.find(d => d.band == "K");
+      return {
+        id: d.id,
+        name: d.name,
+        display_name: d.name.join(" / "),
+        magnitude: magnitude ? magnitude.value : null,
+        distance: d.position ? Math.sqrt(Math.pow(d.position[0], 2) + Math.pow(d.position[1], 2)) : null,
+        N_orbit: d.orbit.length,
+        N_proper_motion: d.proper_motion.length
+      };
+    });
   }
   getStarListFail(error) {
     this.status = "danger";
