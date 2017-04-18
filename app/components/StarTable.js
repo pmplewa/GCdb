@@ -71,8 +71,8 @@ class StarTable extends React.Component {
             <td style={{width: "30%"}} role="button" onClick={() => this.sortBy("display_name", "string")}><strong>Name</strong></td>
             <td style={{width: "20%"}} role="button" onClick={() => this.sortBy("magnitude", "number")}><strong>K-Band Magnitude</strong></td>
             <td style={{width: "20%"}} role="button" onClick={() => this.sortBy("distance", "number")}><strong>Distance from Sgr&nbsp;A*</strong></td>
-            <td style={{width: "10%"}} role="button" onClick={() => this.sortBy("N_orbit", "number")}><strong>Orbits</strong></td>
-            <td style={{width: "10%"}} role="button" onClick={() => this.sortBy("N_proper_motion", "number")}><strong>Proper Motions</strong></td>
+            <td style={{width: "15%"}} role="button" onClick={() => this.sortBy("N_orbit", "number")}><strong>Orbits</strong></td>
+            <td style={{width: "15%"}} role="button" onClick={() => this.sortBy("N_proper_motion", "number")}><strong>Proper Motions</strong></td>
           </tr>
           <tr>
             <td></td>
@@ -102,8 +102,8 @@ class StarTable extends React.Component {
                 <td style={{width: "30%"}}><a role="button" onClick={() => browserHistory.push(`/stars/${d.id}`)} style={{display: "block"}}>{d.display_name ? d.display_name : "(no name)"}</a></td>
                 <td style={{width: "20%"}}>{d.magnitude.toFixed(1)}</td>
                 <td style={{width: "20%"}}>{d.distance ? `${d.distance.toFixed(3)} as` : ""}</td>
-                <td style={{width: "10%"}}>{d.N_orbit > 0 ? d.N_orbit : ""}</td>
-                <td style={{width: "10%"}}>{d.N_proper_motion > 0 ? d.N_proper_motion : ""}</td>
+                <td style={{width: "15%"}}>{d.N_orbit > 0 ? d.N_orbit : ""}</td>
+                <td style={{width: "15%"}}>{d.N_proper_motion > 0 ? d.N_proper_motion : ""}</td>
               </tr>)
         }
         </tbody>
