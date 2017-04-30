@@ -45,20 +45,20 @@ export function M2E(e, M, tol, maxiter) {
   tol = typeof tol !== "undefined" ? tol : 1.48e-8;
   maxiter = typeof maxiter !== "undefined" ? maxiter : 100;
 
-  var M_is_positive = (M > 0);
-  M = Math.abs(M);
+  var E, F;
 
   if (e < 1) {
-    var E = e < 0.8 ? M : Math.PI;
-    var F = E-e*Math.sin(E)-M;
+    E = e < 0.8 ? M : Math.sign(M)*Math.PI;
+    F = E-e*Math.sin(E)-M;
     for (var i = 1; i <= maxiter; i++) {
       E = E-F/(1-e*Math.cos(E));
       F = E-e*Math.sin(E)-M
       if (Math.abs(F) < tol) break;
     }
+    E = mod(E+Math.PI, 2*Math.PI)-Math.PI
   } else {
-    var E = M;
-    var F = E-e*Math.sinh(E)-M;
+    E = Math.sign(M)*Math.log(2.*Math.abs(M)/e+1.8);
+    F = E-e*Math.sinh(E)-M;
     for (var i = 1; i <= maxiter; i++) {
       E = E-F/(1-e*Math.cosh(E));
       F = E-e*Math.sinh(E)-M;
@@ -66,8 +66,6 @@ export function M2E(e, M, tol, maxiter) {
     }
   }
 
-  E = M_is_positive ? E : -E;
-  E = mod(E + Math.PI, 2*Math.PI) - Math.PI
   return E;
 }
 
