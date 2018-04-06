@@ -2,6 +2,8 @@
 
 This web interface allows browsing a database of known stars in the Galactic Center.
 
+![](preview.jpg)
+
 ### Local Install
 
 1) Download the code:
@@ -30,3 +32,5 @@ npm start
 ```
 http://localhost:3000/
 ```
+
+A static version with reduced functionality is hosted [at this link](http://pmplewa.github.io/database).
